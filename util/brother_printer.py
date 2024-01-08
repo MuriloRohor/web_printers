@@ -1,29 +1,16 @@
-import asyncio
+from typing import Optional
 from brother import Brother, SnmpError, UnsupportedModelError
+from fastapi import HTTPException
 
-async def buscar_impressora_por_ip(printer_ip: str):
+async def buscar_impressora_por_ip(printer_ip: str) -> Optional[Brother]:
     try:
-        # Cria uma instância do Brother para a impressora no IP fornecido.
-        # Substitua 'laser' por 'ink' se for uma impressora jato de tinta.
         brother = await Brother.create(printer_ip, printer_type='laser')
+        data = await brother.async_update() # Coleta os dados da impressora.
         
-        # Coleta os dados da impressora.
-        data = await brother.async_update()
     except (ConnectionError, SnmpError, UnsupportedModelError) as error:
-        print(f"Erro ao conectar com a impressora: {error}")
-        return
+        raise HTTPException(status_code=400, detail=f"Erro ao conectar com a impressora: {error}")
     
-    brother.shutdown()
-    
-    if data:
-        impressora = {
-            "modelo": brother.model,
-            "Status": data.status,
-            "Serial": data.serial,
-            "qtd_print": data.page_counter
-            
-        }
-    
-    return impressora
-
-# Executa a função assíncrona.
+    finally:
+        brother.shutdown()
+        
+    return data

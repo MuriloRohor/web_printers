@@ -23,7 +23,7 @@ class SetorRepo:
         try:
             with criar_conexao() as conexao:
                 cursor = conexao.cursor()
-                cursor.execute(SQL_INSERIR, (setor.nome))
+                cursor.execute(SQL_INSERIR, (setor.nome,))
                 if cursor.rowcount > 0:
                     setor.id = cursor.lastrowid
                     return setor

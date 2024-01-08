@@ -28,7 +28,7 @@ class FilialRepo:
                                filial.nome,
                                filial.cidade
                                ))
-                return True
+                return filial
         except sqlite3.Error as e:
             print(e)
             return False

@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS impressora (
 """
 
 SQL_INSERIR = """
-INSERT INTO (cod, nome, ip_andress, serial, filial_id, setor_id)
+INSERT INTO impressora (cod, nome, ip_andress, serial, filial_id, setor_id)
 VALUES (?, ?, ?, ?, ?, ?)
 """
 
