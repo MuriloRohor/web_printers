@@ -6,11 +6,15 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 
+
 from repository.RegistroImpressaoRepo import RegistroImpressao
 from repository.ImpressoraRepo import ImpressoraRepo
 from repository.SetorRepo import SetorRepo
+from repository.FilialRepo import FilialRepo
 
 from router.ImpressoraRouter import router as impressoraRouter
+from router.FilialRouter import router as filialRouter
+from router.SetorRouter import router as setorRouter
 
 from schemas.ImpressoraSchema import ImpressoraSchema
 
@@ -21,11 +25,15 @@ templates = Jinja2Templates(directory="templates")
 
 app = FastAPI()
 
+FilialRepo.criar_tabela()
+SetorRepo.criar_tabela()
 ImpressoraRepo.criar_tabela()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.include_router(impressoraRouter)
+app.include_router(filialRouter)
+app.include_router(setorRouter)
 
 @app.get("/")
 def main(request: Request):

@@ -3,7 +3,7 @@ from typing import Optional
 
 class FilialSchema(BaseModel):
     id: Optional[int] = None
-    cod: str
+    cod: int
     nome: str
     cidade: str
     

@@ -23,11 +23,11 @@ class FilialRepo:
         try:
             with criar_conexao() as conexao:
                 cursor = conexao.cursor()
-                cursor.execute(SQL_INSERIR,
+                cursor.execute(SQL_INSERIR,(
                                filial.cod,
                                filial.nome,
                                filial.cidade
-                               )
+                               ))
                 return True
         except sqlite3.Error as e:
             print(e)

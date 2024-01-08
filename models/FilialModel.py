@@ -4,6 +4,6 @@ from typing import Optional
 @dataclass
 class Filial:
     id: Optional[int] = None
-    cod: Optional[str] = None
+    cod: Optional[int] = None
     nome: Optional[str] = None
     cidade: Optional[str] = None
