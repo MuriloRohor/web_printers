@@ -6,3 +6,8 @@ CREATE TABLE IF NOT EXISTS filial (
   cidade TEXT NOT NULL  
 )
 """
+
+SQL_INSERIR = """
+INSERT INTO (cod, nome, cidade)
+VALUES (?, ?, ?)
+"""

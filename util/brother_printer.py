@@ -1,7 +1,7 @@
 import asyncio
 from brother import Brother, SnmpError, UnsupportedModelError
 
-async def BuscarImpressoraPorIP(printer_ip: str):
+async def buscar_impressora_por_ip(printer_ip: str):
     try:
         # Cria uma instância do Brother para a impressora no IP fornecido.
         # Substitua 'laser' por 'ink' se for uma impressora jato de tinta.

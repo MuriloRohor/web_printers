@@ -4,3 +4,19 @@ CREATE TABLE IF NOT EXISTS setor (
   nome TEXT NOT NULL,
 )
 """
+
+SQL_INSERIR = """
+INSERT INTO setor (nome)
+VALUES (?)
+"""
+
+SQL_ALTERAR = """
+UPDATE setor
+SET nome=?
+WHERE id=?
+"""
+
+SQL_EXCLUIR = """
+DELETE FROM setor
+WHERE id=?
+"""
