@@ -15,6 +15,7 @@ INSERT INTO registro_impressao
 (user, date, time, serial, print_pages)
 VALUES (?, ?, ?, ?, ?)
 """
+
 SQL_CONTAR_LINHAS = """
 SELECT COUNT (*)
 FROM registro_impressao

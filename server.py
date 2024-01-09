@@ -11,6 +11,7 @@ from repository.RegistroImpressaoRepo import RegistroImpressao
 from repository.ImpressoraRepo import ImpressoraRepo
 from repository.SetorRepo import SetorRepo
 from repository.FilialRepo import FilialRepo
+from repository.StatusImpressoraRepo import StatusImpressoraRepo
 
 from router.ImpressoraRouter import router as impressoraRouter
 from router.FilialRouter import router as filialRouter
@@ -27,6 +28,7 @@ app = FastAPI()
 
 FilialRepo.criar_tabela()
 SetorRepo.criar_tabela()
+StatusImpressoraRepo.inserir_status_padrao()
 ImpressoraRepo.criar_tabela()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")

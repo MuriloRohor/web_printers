@@ -5,18 +5,19 @@ CREATE TABLE IF NOT EXISTS impressora (
   nome TEXT NOT NULL,
   ip_andress TEXT NOT NULL,
   serial TEXT NOT NULL,
+  nivel_toner INTEGER NOT NULL,
+  status_id INTEGER NOT NULL,
   filial_id INTEGER NOT NULL,
   setor_id INTEGER NOT NULL,
-  nivel_toner INTEGER NOT NULL,
-  status TEXT NOT NULL,
   FOREIGN KEY (filial_id) REFERENCES filial(id),
-  FOREIGN KEY (setor_id) REFERENCES setor(id)
+  FOREIGN KEY (setor_id) REFERENCES setor(id),
+  FOREIGN KEY (status_id) REFERENCES status_impressora(id)
 )
 """
 
 SQL_INSERIR = """
-INSERT INTO impressora (cod, nome, ip_andress, serial, filial_id, setor_id)
-VALUES (?, ?, ?, ?, ?, ?)
+INSERT INTO impressora (cod, nome, ip_andress, serial, status_id, filial_id, setor_id) 
+VALUES (?, ?, ?, ?, ?, ?, ?)
 """
 
 SQL_EXCLUIR = """
@@ -25,7 +26,7 @@ WHERE id = ?
 """
 
 SQL_OBTER_POR_ID = """
-SELECT (cod , nome, ip_andress, serial, filial_id, setor_id, nivel_toner, status)
+SELECT (cod , nome, ip_andress, serial, status_id, filial_id, setor_id, nivel_toner)
 FROM impressora
 WHERE id = ?
 """
