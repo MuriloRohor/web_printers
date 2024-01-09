@@ -14,3 +14,17 @@ async def buscar_impressora_por_ip(printer_ip: str) -> Optional[Brother]:
         brother.shutdown()
         
     return data
+
+async def buscar_serial_impressora(printer_ip: str):
+    try:
+        brother = await Brother.create(printer_ip, printer_type='laser')
+        data = await brother.async_update() # Coleta os dados da impressora.
+    
+    except (ConnectionError, SnmpError, UnsupportedModelError) as error:
+        raise HTTPException(status_code=400, detail=f"Erro ao conectar com a impressora: {error}")
+    
+    finally:
+        brother.shutdown()
+        
+    return data.serial
+

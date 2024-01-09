@@ -5,7 +5,7 @@ from repository.ImpressoraRepo import ImpressoraRepo
 
 from schemas.ImpressoraSchema import ImpressoraSchema
 
-from util.brother_printer import buscar_impressora_por_ip
+from util.brother_printer import buscar_impressora_por_ip, buscar_serial_impressora
 
 router = APIRouter()
 
@@ -18,16 +18,15 @@ def get_impressora_por_ip(request: Request, ip: str):
 @router.post("/printer/inserir")
 async def inserir_impressora(impressora: ImpressoraSchema):
     try:
-        data = asyncio.unr(buscar_impressora_por_ip(impressora.ip_andress))
-        impressora.serial = data.serial
         impressora_criada = ImpressoraRepo.inserir(impressora)
         return impressora_criada
     
-    except HTTPException as http_exc:
-        raise http_exc
-    
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {e}")
+
+@router.get("/printer/{id}")
+def exibir_impressora(request: Request):
+    return 
         
         
     

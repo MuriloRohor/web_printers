@@ -28,10 +28,23 @@ class ImpressoraRepo:
                                 impressora.cod,
                                 impressora.nome,
                                 impressora.ip_andress,
-                                impressora.serial,
+                                "",
                                 impressora.filial_id,
                                 impressora.setor_id
                                ))
+                return impressora
+        except sqlite3.Error as e:
+            print(e)
+            return None
+        
+    @classmethod
+    def obter_por_id(cls, id: int) -> Optional[Impressora]:
+        try:
+            with criar_conexao() as conexao:
+                cursor = conexao.cursor()
+                cursor.execute(SQL_OBTER_POR_ID, (id,)).fetchone()
+                return Impressora(*Impressora)
+            
         except sqlite3.Error as e:
             print(e)
             return None
