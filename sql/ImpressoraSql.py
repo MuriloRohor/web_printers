@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS impressora (
   cod INTEGER NOT NULL,
   nome TEXT NOT NULL,
   ip_andress TEXT NOT NULL,
-  serial TEXT NOT NULL,
+  serial TEXT NULL,
   nivel_toner INTEGER NOT NULL,
   status_id INTEGER NOT NULL,
   filial_id INTEGER NOT NULL,
@@ -29,4 +29,10 @@ SQL_OBTER_POR_ID = """
 SELECT (cod , nome, ip_andress, serial, status_id, filial_id, setor_id, nivel_toner)
 FROM impressora
 WHERE id = ?
+"""
+
+SQL_OBTER_ID_SEM_SERIAL = """
+SELECT (id)
+FROM impressora
+WHERE serial is NULL
 """

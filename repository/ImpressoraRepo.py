@@ -28,7 +28,6 @@ class ImpressoraRepo:
                                 impressora.cod,
                                 impressora.nome,
                                 impressora.ip_andress,
-                                "",
                                 impressora.filial_id,
                                 impressora.setor_id
                                ))
